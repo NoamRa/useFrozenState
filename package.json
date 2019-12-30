@@ -1,0 +1,36 @@
+{
+  "name": "use-frozen-state",
+  "version": "0.0.1",
+  "description": "React custom hook that freezes state. Only the setter will be able to change the state.",
+  "scripts": {
+    "test": "jest",
+    "develop": "tsc --watch",
+    "publish": "tsc",
+    "prepublish": "tsc",
+    "tsc": "tsc"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "useState",
+    "React",
+    "hook",
+    "freeze",
+    "deepFreeze"
+  ],
+  "author": "NoamR",
+  "license": "MIT",
+  "devDependencies": {
+    "@testing-library/react-hooks": "^3.2.1",
+    "@types/jest": "^24.0.25",
+    "@types/react": "^16.9.17",
+    "jest": "^24.9.0",
+    "react": "^16.12.0",
+    "react-test-renderer": "^16.12.0",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.4"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0"
+  }
+}
