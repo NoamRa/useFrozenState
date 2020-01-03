@@ -1,36 +1,52 @@
 {
   "name": "use-frozen-state",
-  "version": "0.0.1",
-  "description": "React custom hook that freezes state. Only the setter will be able to change the state.",
-  "scripts": {
-    "test": "jest",
-    "develop": "tsc --watch",
-    "publish": "tsc",
-    "prepublish": "tsc",
-    "tsc": "tsc"
-  },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "keywords": [
-    "useState",
-    "React",
-    "hook",
-    "freeze",
-    "deepFreeze"
-  ],
-  "author": "NoamR",
+  "version": "1.0.0",
+  "description": "",
+  "author": "NoamRa",
   "license": "MIT",
+  "repository": "NoamRa/use-frozen-state",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "jsnext:main": "dist/index.es.js",
+  "engines": {
+    "node": ">=10",
+    "npm": ">=5"
+  },
+  "scripts": {
+    "test": "cross-env CI=1 react-scripts test --env=jsdom",
+    "test:watch": "react-scripts test --env=jsdom",
+    "build": "rollup -c",
+    "start": "rollup -c -w",
+    "prepare": "npm run build",
+    "predeploy": "cd example && npm install && npm run build",
+    "deploy": "gh-pages -d example/build"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "^16.12.0"
+  },
   "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/runtime": "^7.7.7",
     "@testing-library/react-hooks": "^3.2.1",
     "@types/jest": "^24.0.25",
     "@types/react": "^16.9.17",
-    "jest": "^24.9.0",
+    "@typescript-eslint/eslint-plugin": "^2.14.0",
+    "@typescript-eslint/parser": "^2.14.0",
+    "cross-env": "^6.0.3",
+    "eslint": "^6.8.0",
+    "gh-pages": "^2.1.1",
+    "prettier": "^1.19.1",
     "react": "^16.12.0",
+    "react-scripts": "^3.3.0",
     "react-test-renderer": "^16.12.0",
-    "ts-jest": "^24.2.0",
+    "rollup": "^1.27.14",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-typescript2": "^0.25.3",
+    "rollup-plugin-url": "^3.0.1",
     "typescript": "^3.7.4"
-  },
-  "peerDependencies": {
-    "react": "^16.12.0"
   }
 }
