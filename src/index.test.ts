@@ -57,15 +57,17 @@ describe("Test use-frozen-state", () => {
 
   it("Should freeze the object after using setter", () => {
     const { result } = renderHook(() => useFrozenState());
-    const [, setMyState] = result.current;
+    let [myState, setMyState] = result.current;
     act(() => {
       setMyState(myObject);
     });
 
-    const [myState] = result.current;
+    [myState] = result.current;
 
     expect(myState).toEqual(myObject);
     expect(Object.isFrozen(myState)).toBeTruthy();
+    expect(Object.isFrozen(myState.here)).toBeFalsy();
+    expect(Object.isFrozen(myState.also)).toBeFalsy();
   });
 
   describe("Yest useDeepFrozenState", () => {
