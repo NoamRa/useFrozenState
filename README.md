@@ -90,12 +90,12 @@ const theSmiths = [
   { name: "Morty", last: "Smith" },
 ];
 
-function deepFreezeFromSecondLevel(object) {
+function deepFreezeSecondLevel(object: any) {
   if (object === undefined || object === null) return object;
 
   Object.getOwnPropertyNames(object).forEach(prop => {
     const value = object[prop];
-    typeof value === "object" && deepFreeze(value);
+    typeof value === "object" && value !== null && Object.freeze(value);
   });
 
   return object;
@@ -104,7 +104,7 @@ function deepFreezeFromSecondLevel(object) {
 const Example = () => {
   const [family, setFamily] = useDeepFrozenState(
     theSmiths,
-    deepFreezeFromSecondLevel, /* important part */
+    deepFreezeFromSecondLevel /* important part */,
   );
 
   const rickTakesControl = () => {

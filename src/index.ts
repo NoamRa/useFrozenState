@@ -5,7 +5,7 @@ function deepFreeze(object: any) {
 
   Object.getOwnPropertyNames(object).forEach(prop => {
     const value = object[prop];
-    typeof value === "object" && deepFreeze(value);
+    typeof value === "object" && value !== null && deepFreeze(value);
   });
 
   return Object.freeze(object);
