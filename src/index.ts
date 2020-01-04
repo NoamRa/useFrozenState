@@ -12,14 +12,14 @@ function deepFreeze(object: any) {
 }
 
 export function useDeepFrozenState(
-  initialValue: any = undefined,
+  initialState: any = undefined,
   deepFreezeFn = deepFreeze,
 ) {
-  const [_state, _setState] = useState(initialValue);
+  const [_state, _setState] = useState(initialState);
   return [deepFreezeFn(_state), _setState];
 }
 
-export function useFrozenState(initialValue: any = undefined) {
-  const [_state, _setState] = useState(initialValue);
+export function useFrozenState(initialState: any = undefined) {
+  const [_state, _setState] = useState(initialState);
   return [Object.freeze(_state), _setState];
 }
