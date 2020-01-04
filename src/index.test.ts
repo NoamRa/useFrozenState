@@ -2,7 +2,6 @@ import { renderHook, act } from "@testing-library/react-hooks";
 import { useFrozenState, useDeepFrozenState } from "./index";
 
 describe("Test use-frozen-state", () => {
-  const myString = "foo";
   const myObject = {
     name: "foo",
     lastName: "bar",
