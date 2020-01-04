@@ -104,7 +104,7 @@ function deepFreezeFromSecondLevel(object) {
 const Example = () => {
   const [family, setFamily] = useDeepFrozenState(
     theSmiths,
-    deepFreezeFromSecondLevel,
+    deepFreezeFromSecondLevel, /* important part */
   );
 
   const rickTakesControl = () => {
