@@ -1,10 +1,15 @@
 # use-frozen-state
 
-Tiny and dependancy free React hook that makes sure your state is immutable. Call useFrozenState ot useDeepFrozenState instead of useState.
+React hook that makes sure your state is immutable. Call `useFrozenState` or `useDeepFrozenState` instead of useState.
+
+### Features:
+- Tiny and dependancy free
+- Built with Typescript
 
 >
 
 [![NPM](https://img.shields.io/npm/v/use-frozen-state.svg)](https://www.npmjs.com/package/use-frozen-state)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 ## Install
 
@@ -108,11 +113,11 @@ const Example = () => {
   );
 
   const rickTakesControl = () => {
-    // this will work
+    // with deepFreezeSecondLevel, splice on family will work
     const jerryIndex = family.findIndex(member => member.name === "Jerry");
     theSmiths.splice(jerryIndex, 1, { name: "Rick", last: "Sanchez" });
 
-    // this won't
+    // but changing a family member will fail
     const beth = family.findIndex(member => member.name === "Beth");
     beth.last = "Sanchez";
   };
