@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, SetStateAction, Dispatch } from "react";
 
 function deepFreeze(object: any) {
   if (object === undefined || object === null) return object;
@@ -11,15 +11,17 @@ function deepFreeze(object: any) {
   return Object.freeze(object);
 }
 
-export function useDeepFrozenState(
-  initialState: any = undefined,
+export function useDeepFrozenState<S>(
+  initialState: S,
   deepFreezeFn = deepFreeze,
-) {
+): [Readonly<S>, Dispatch<SetStateAction<S>>] {
   const [_state, _setState] = useState(initialState);
   return [deepFreezeFn(_state), _setState];
 }
 
-export function useFrozenState(initialState: any = undefined) {
+export function useFrozenState<S>(
+  initialState: S,
+): [Readonly<S>, Dispatch<SetStateAction<S>>] {
   const [_state, _setState] = useState(initialState);
   return [Object.freeze(_state), _setState];
 }

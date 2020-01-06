@@ -29,13 +29,19 @@ describe("Test use-frozen-state", () => {
     },
   });
 
+  // useFrozenState and useDeepFrozenState require same type in 
+  // initialization and updates. 'myUnknown' fakes object type.
+  const myObject = genarateObject();
+  type MyObjectType = typeof myObject;
+  const myUnknown = (undefined as unknown) as MyObjectType;
+
   describe("Test useFrozenState", () => {
     it("Should be initilized by undefiend as default", () => {
       const {
         result: {
           current: [myState],
         },
-      } = renderHook(() => useFrozenState());
+      } = renderHook(() => useFrozenState(myUnknown));
 
       expect(myState).toBeUndefined();
     });
@@ -58,7 +64,7 @@ describe("Test use-frozen-state", () => {
 
   it("Should freeze the object after using setter", () => {
     const myObject = genarateObject();
-    const { result } = renderHook(() => useFrozenState());
+    const { result } = renderHook(() => useFrozenState(myUnknown));
     let [myState, setMyState] = result.current;
     act(() => {
       setMyState(myObject);
@@ -75,7 +81,7 @@ describe("Test use-frozen-state", () => {
 
   describe("Yest useDeepFrozenState", () => {
     it("Should be initilized by undefiend as default", () => {
-      const { result } = renderHook(() => useDeepFrozenState());
+      const { result } = renderHook(() => useDeepFrozenState(myUnknown));
       const [myState] = result.current;
 
       expect(myState).toBeUndefined();
@@ -83,7 +89,7 @@ describe("Test use-frozen-state", () => {
 
     it("Should freeze the object after using setter", () => {
       const myObject = genarateObject();
-      const { result } = renderHook(() => useDeepFrozenState());
+      const { result } = renderHook(() => useDeepFrozenState(myUnknown));
       let [myState, setMyState] = result.current;
       act(() => {
         setMyState(myObject);
